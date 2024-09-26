@@ -5,6 +5,10 @@ const httpClient = axios.create({
   baseURL: "http://localhost:3000",
 });
 
+export const postUser = (values) => {
+    return httpClient.post("/users", values);
+}
+
 export const getAllUsers = (options = {}) => {
     const defultOptions = {
         page: 1,
