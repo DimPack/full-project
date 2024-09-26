@@ -7,7 +7,7 @@ const UsesList = () => {
   const dispatch = useDispatch();
   const mapUsers = (user) => <li key={user.id}>{user.email}</li>;
   useEffect(() => {
-    dispatch(getUsers({ page: 1, results: 5 }));
+    dispatch(getUsers({ page: 2, amount: 10 }));
     //eslint-disable-next-line
   }, []);
   return (
