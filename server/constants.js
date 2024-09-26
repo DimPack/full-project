@@ -3,6 +3,7 @@ const constants = {
     MIN: 2,
     MAX: 20,
   },
-  IMAGE_PATH: "public/images",
+  IMAGE_PATH: 'public/images',
 };
+
 module.exports = constants;

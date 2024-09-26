@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllUsers, postUser } from "../api";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getAllUsers, postUser } from '../api';
 
 export const createUser = createAsyncThunk(
-  "users/createUser",
+  'users/createUser',
   async (values, thunkAPI) => {
     try {
       const {
@@ -16,7 +16,7 @@ export const createUser = createAsyncThunk(
 );
 
 export const getUsers = createAsyncThunk(
-  "users/getUsers",
+  'users/getUsers',
   async ({ page, amount }, thunkAPI) => {
     try {
       const {
@@ -28,28 +28,30 @@ export const getUsers = createAsyncThunk(
     }
   }
 );
+
 const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState: {
     users: [],
     error: null,
     isPending: false,
   },
-  reducers: {},
+  reducers: {
+    //sort
+  },
   extraReducers: (builder) => {
-      //eslint-disable-next-line
-      builder.addCase(createUser.pending, (state, action) => {
-        state.isPending = true;
-      });
-      builder.addCase(createUser.fulfilled, (state, action) => {
-        state.isPending = false;
-        state.users.push(action.payload);
-      });
-      builder.addCase(createUser.rejected, (state, action) => {
-        state.isPending = false;
-        state.error = action.payload;
-      });
-
+    //eslint-disable-next-line
+    builder.addCase(createUser.pending, (state, action) => {
+      state.isPending = true;
+    });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      state.isPending = false;
+      state.users.push(action.payload);
+    });
+    builder.addCase(createUser.rejected, (state, action) => {
+      state.isPending = false;
+      state.error = action.payload;
+    });
     //eslint-disable-next-line
     builder.addCase(getUsers.pending, (state, action) => {
       state.isPending = true;

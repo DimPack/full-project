@@ -1,11 +1,11 @@
-"use strict";
-const { isBefore } = require("date-fns");
-const { Model } = require("sequelize");
+'use strict';
+const { isBefore } = require('date-fns');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Task extends Model {
     static associate(models) {
       Task.belongsTo(models.User, {
-        foreignKey: "userId",
+        foreignKey: 'userId'
       });
     }
   }
@@ -25,13 +25,13 @@ module.exports = (sequelize, DataTypes) => {
           isDate: true,
           isValidDate(value) {
             if (isBefore(new Date(value), new Date())) {
-              throw new Error("Error: check deadline");
+              throw new Error('Error: check deadline');
             }
           },
         },
       },
       isDone: {
-        field: "is_done",
+        field: 'is_done',
         allowNull: false,
         defaultValue: false,
         type: DataTypes.BOOLEAN,
@@ -42,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Task",
-      tableName: "tasks",
+      modelName: 'Task',
+      tableName: 'tasks',
       underscored: true,
     }
   );

@@ -1,5 +1,6 @@
-const { LIMIT } = require("../constants");
-module.exports.pagination = async (req, res, next) => {
+const constants = require('../constants');
+const { LIMIT } = constants;
+module.exports.paginate = async (req, res, next) => {
   try {
     const {
       query: { page, amount },
@@ -7,8 +8,8 @@ module.exports.pagination = async (req, res, next) => {
     const limit = amount > LIMIT.MIN && amount <= LIMIT.MAX ? amount : LIMIT.MIN;
     const offset = page > 1 ? (page - 1) * limit : 0;
     req.pagination = {
-      limit: limit,
-      offset: offset,
+      limit,
+      offset,
     };
     next();
   } catch (error) {

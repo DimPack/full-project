@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../store/usersSlice";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsers } from '../../store/usersSlice';
 
-const UsesList = () => {
+const UsersList = () => {
   const { users, error, isPending } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const mapUsers = (user) => <li key={user.id}>{user.email}</li>;
   useEffect(() => {
-    dispatch(getUsers({ page: 1, amount: 3 }));
+    dispatch(getUsers({ page: 1, amount: 3 })); //effect request users
     //eslint-disable-next-line
-  }, []);
+  }, []); //[] - one time
   return (
     <>
       {error && <p>{error}</p>}
-      {isPending && <p>Loading...</p>}
+      {isPending && <p>Loading....</p>}
       {!error && !isPending && users.length === 0 ? (
         <p>users list empty</p>
       ) : (
@@ -23,4 +23,4 @@ const UsesList = () => {
   );
 };
 
-export default UsesList;
+export default UsersList;

@@ -5,12 +5,12 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       User.hasMany(models.Task, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
       });
       User.belongsToMany(models.Group, {
         through: 'users_to_groups',
-        foreignKey: 'userId'
-      })
+        foreignKey: 'userId',
+      });
     }
   }
   User.init(
@@ -56,11 +56,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY,
         validate: {
           isDate: true,
-          isValidDate(value){
+          isValidDate(value) {
             if (isBefore(new Date(), new Date(value))) {
               throw new Error('Error: check birthday');
             }
-          }
+          },
         },
       },
       isMale: {

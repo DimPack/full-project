@@ -1,6 +1,6 @@
-PATCH http://localhost:3000/users/50 HTTP/1.1
+PATCH  http://localhost:3000/users/58 HTTP/1.1
 Content-Type: application/json
 
-{
-    "firstName":"Assaa"
+{    
+  "lastName":"Redghftgr"
 }

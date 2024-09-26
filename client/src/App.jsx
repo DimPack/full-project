@@ -1,13 +1,12 @@
-// import Todo from './components/Todo';
 import FormRegister from './components/FormRegister';
-import UsesList from './components/UsersList';
+import UsersList from './components/UsersList';
 
 function App() {
   return (
     <>
-    <FormRegister/>
-    <hr />
-    <UsesList />
+      <FormRegister />
+      <hr />
+      <UsersList />
     </>
   );
 }
