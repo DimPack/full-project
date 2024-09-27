@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../store/usersSlice";
 
 const UserProfile = () => {
-    const { userId } = useParams();
+  const { userId } = useParams();
 
   const { userCurrent, error, isPending } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -15,9 +15,14 @@ const UserProfile = () => {
     <div>
       {error && <p>{error}</p>}
       {isPending && <p>Loading....</p>}
-      {!error && !isPending && userCurrent &&(
+      {!error && !isPending && userCurrent && (
         <article>
           <h3>{userCurrent.email}</h3>
+          {userCurrent.avatar ? (
+            <img src={`http://localhost:3000/images/${userCurrent.avatar}`} alt={userCurrent.email} />
+          ) : (
+            <img src="/user-avatar.jpg" alt="none" />
+          )}
         </article>
       )}
     </div>
