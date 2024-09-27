@@ -1,16 +1,19 @@
-import axios from 'axios';
-import queryString from 'query-string';
+import axios from "axios";
+import queryString from "query-string";
 
 const httpClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: "http://localhost:3000",
 });
 
 export const postUser = (values) =>
-  httpClient.post('/users', values, {
+  httpClient.post("/users", values, {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
   });
+
+export const getOneUsers = (id) => httpClient.get(`/users/${id}`);
+// export const delOneUsers = (id) => httpClient.delete(`/users/${id}`);
 
 export const getAllUsers = (options = {}) => {
   const defaultOptions = {
