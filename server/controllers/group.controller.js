@@ -99,3 +99,29 @@ module.exports.addUserToGroup = async (req, res, next) => {
     next(error);
   }
 };
+module.exports.deleteUserFromGroup = async (req, res, next) => {
+  try {
+    const { userInstance, groupInstance } = req;
+    
+    if(groupInstance.id ){
+      const group = await Group.findByPk(groupInstance.id);
+      if (!group) {
+        return next(createError(404, "Group not found"));
+      }
+      const user = await User.findByPk(userInstance.id);
+      if (!user) {
+        return next(createError(404, "User not found"));
+      }
+      const countUsersForGroup = await group.countUsers();
+      if(countUsersForGroup <= 1){
+        await group.destroy();
+        res.status(201).send({ data: `group is Destroy!!! Group id: ${group.id}`});
+      } else {
+        await group.removeUser(userInstance.id);
+        res.status(201).send({ data: `group is not empty. Delete user - id: ${userInstance.id} name: ${userInstance.firstName}`});
+      }
+    }
+  } catch (error) {
+    next(error);
+  }
+};

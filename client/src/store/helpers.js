@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const decorateAsyncThunk = ({ type, asyncThunk }) => {
   return createAsyncThunk(type, async (values, thunkAPI) => {
@@ -6,6 +6,7 @@ export const decorateAsyncThunk = ({ type, asyncThunk }) => {
       const {
         data: { data },
       } = await asyncThunk(values);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

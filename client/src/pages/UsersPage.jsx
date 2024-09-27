@@ -6,6 +6,6 @@ const UsersPage = () => {
       <UsersList />
     </>
   );
-};
+}
 
 export default UsersPage;

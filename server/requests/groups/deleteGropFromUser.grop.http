@@ -1,2 +1,2 @@
-DELETE  http://localhost:3000/users/1/groups/8 HTTP/1.1
+DELETE  http://localhost:3000/users/2/groups/4 HTTP/1.1
 Content-Type: application/json

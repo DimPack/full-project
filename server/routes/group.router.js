@@ -5,6 +5,7 @@ const {
   getGroup,
   addUserToGroup,
   updateGroup,
+  deleteUserFromGroup,
 } = require('../controllers/group.controller');
 const { checkGroup } = require('../middlewares/group.mw');
 const { singleUpload } = require('../middlewares/upload.mw');
@@ -21,5 +22,6 @@ groupRouter.get('/:groupId', getGroup);
 //перевіряємо групу на наявність незалежно від належності цієї групи до поточного користувача
 groupRouter.post('/:groupId', checkGroup, addUserToGroup);
 groupRouter.patch('/:groupId', checkGroup, singleUpload('image'), updateGroup);
+groupRouter.delete("/:groupId", checkGroup, deleteUserFromGroup);
 
 module.exports = groupRouter;
