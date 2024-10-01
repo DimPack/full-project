@@ -1,64 +1,59 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
-import { createUser } from '../../store/usersSlice';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../store/usersSlice";
 const initialValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: '',
-  birthday: '',
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  birthday: "",
   isMale: true,
-  avatar: '',
+  avatar: "",
 };
+
 const FormRegister = () => {
   const dispatch = useDispatch();
   const onSubmit = (values, formikBag) => {
     dispatch(createUser(values));
-    //formikBag.resetForm();
+    formikBag.resetForm();
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {(formikProps) => {
         const handleAvatar = ({ target }) => {
-          formikProps.setFieldValue('avatar', target.files[0]);
+          formikProps.setFieldValue("avatar", target.files[0]);
         };
+        const formFields = [
+          {
+            label: "avatar",
+            name: "avatar",
+            type: "file",
+            onChange: handleAvatar,
+          },
+          { label: "first name", name: "firstName", type: "text" },
+          { label: "last name", name: "lastName", type: "text" },
+          { label: "email", name: "email", type: "email" },
+          { label: "password", name: "password", type: "password" },
+          { label: "birthday", name: "birthday", type: "date" },
+          { label: "isMale", name: "isMale", type: "checkbox" },
+        ];
         return (
           <Form encType="multipart/form-data">
-            <label>
-              avatar:
-              <input name="avatar" type="file" onChange={handleAvatar} />
-              <ErrorMessage name="avatar" />
-            </label>
-            <label>
-              first name:
-              <Field name="firstName" />
-              <ErrorMessage name="firstName" />
-            </label>
-            <label>
-              last name:
-              <Field name="lastName" />
-              <ErrorMessage name="lastName" />
-            </label>
-            <label>
-              email:
-              <Field name="email" type="email" />
-              <ErrorMessage name="email" />
-            </label>
-            <label>
-              password:
-              <Field name="password" type="password" />
-              <ErrorMessage name="password" />
-            </label>
-            <label>
-              birthday:
-              <Field name="birthday" type="date" />
-              <ErrorMessage name="birthday" />
-            </label>
-            <label>
-              gender:
-              <Field name="isMale" type="checkbox" />
-            </label>
+            {formFields.map((field, index) => (
+              <label key={index}>
+                {field.label}:{field.type === "file" ? (
+                  <input
+                    name={field.name}
+                    type={field.type}
+                    onChange={handleAvatar}
+                  />
+                ) : (
+                  <Field name={field.name} type={field.type} />
+                )}
+                <ErrorMessage name={field.label} />
+              </label>
+            ))}
             <button type="submit">register</button>
           </Form>
         );

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers, deleteUser } from '../../store/usersSlice';
+import mapUsers from './mapUsers';
 
 const UsersList = () => {
   const { users, error, isPending } = useSelector((state) => state.users);
@@ -15,12 +15,6 @@ const UsersList = () => {
   const handleDelete = (id) => () => {
     dispatch(deleteUser(id));
   };
-  const mapUsers = (user) => (
-    <li key={user.id}>
-      <Link to={`/users/${user.id}`}>{user.email}</Link>
-      <button onClick={handleDelete(user.id)}>delete</button>
-    </li>
-  );
   return (
     <>
       {error && <p>{error}</p>}
@@ -28,7 +22,7 @@ const UsersList = () => {
       {!error && !isPending && users.length === 0 ? (
         <p>users list empty</p>
       ) : (
-        <ol>{users.map(mapUsers)}</ol>
+        <ol>{users.map((user) => mapUsers(user, handleDelete))}</ol>
       )}
     </>
   );
