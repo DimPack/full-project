@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Films extends Model {
     /**
@@ -13,17 +11,54 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Films.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    genreId: DataTypes.INTEGER,
-    releaseDate: DataTypes.DATEONLY,
-    durationMovie: DataTypes.INTEGER,
-    country: DataTypes.STRING,
-    language: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Films',
-  });
+  Films.init(
+    {
+      title: {
+        allowNull: false,
+        type: DataTypes.STRING(64),
+        validate: {
+          notNull: true,
+          notEmpty: true,
+        },
+      },
+      description: { type: DataTypes.TEXT },
+      genreId: {
+        field: "genre_id",
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        validate: { 
+          notNull: true, 
+          notEmpty: true 
+        },
+      },
+      releaseDate: {
+        field: "release_date",
+        allowNull: false,
+        type: DataTypes.DATEONLY,
+        validate: {
+          isDate: true,
+          notNull: true, 
+          notEmpty: true 
+        }
+      },
+      durationMovie: {
+        field: "duration_movie",
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        validate: {
+          notNull: true, 
+          notEmpty: true 
+        }
+      },
+      country: { allowNull: false, type: DataTypes.STRING(32) },
+      language: { type: DataTypes.STRING(32) },
+    },
+    {
+      sequelize,
+      modelName: "Films",
+      tableName: "films",
+      underscored: true,
+    }
+  );
   return Films;
 };
