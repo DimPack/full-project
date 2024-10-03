@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('films', {
+    await queryInterface.createTable('movies',   {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,11 +15,6 @@ module.exports = {
       },
       description: {
         type: Sequelize.TEXT
-      },
-      genreId: {
-        field: 'genre_id',
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       releaseDate: {
         field: 'release_date',
@@ -51,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('films');
+    await queryInterface.dropTable('movies');
   }
 };
