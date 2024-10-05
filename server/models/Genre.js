@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Genre extends Model {
     /**
@@ -13,30 +11,23 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Genre.init({
-    action: DataTypes.STRING,
-    adventure: DataTypes.STRING,
-    comedy: DataTypes.STRING,
-    drama: DataTypes.STRING,
-    horror: DataTypes.STRING,
-    thriller: DataTypes.STRING,
-    horror: DataTypes.STRING,
-    scifi: DataTypes.STRING,
-    fantasy: DataTypes.STRING,
-    romance: DataTypes.STRING,
-    mystery: DataTypes.STRING,
-    animation: DataTypes.STRING,
-    documentary: DataTypes.STRING,
-    musical: DataTypes.STRING,
-    crime: DataTypes.STRING,
-    war: DataTypes.STRING,
-    western: DataTypes.STRING,
-    biography: DataTypes.STRING,
-    historical: DataTypes.STRING,
-    family: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Genre',
-  });
+  Genre.init(
+    {
+      name: {
+        type: DataTypes.STRING(32),
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true,
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "Genre",
+      tableName: "genre",
+      underscored: true
+    }
+  );
   return Genre;
 };

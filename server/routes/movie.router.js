@@ -1,5 +1,13 @@
 const { Router } = require("express");
+const { createMovie, findAllMovies, findByPk, deleteMovieByPk, updateMovieByPk } = require("../controllers/movie.controller");
 
-const filmsRouter = Router();
+const movieRouter = Router();
 
-module.exports = filmsRouter;
+movieRouter.post("/", createMovie);
+movieRouter.get("/", findAllMovies);
+
+movieRouter.get("/:movieId", findByPk);
+movieRouter.delete("/:movieId", deleteMovieByPk);
+
+movieRouter.patch("/:movieId", updateMovieByPk)
+module.exports = movieRouter;

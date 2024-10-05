@@ -2,84 +2,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Genres', {
+    await queryInterface.createTable('genres', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      action: {
-        type: Sequelize.STRING
-      },
-      adventure: {
-        type: Sequelize.STRING
-      },
-      comedy: {
-        type: Sequelize.STRING
-      },
-      drama: {
-        type: Sequelize.STRING
-      },
-      horror: {
-        type: Sequelize.STRING
-      },
-      thriller: {
-        type: Sequelize.STRING
-      },
-      horror: {
-        type: Sequelize.STRING
-      },
-      scifi: {
-        type: Sequelize.STRING
-      },
-      fantasy: {
-        type: Sequelize.STRING
-      },
-      romance: {
-        type: Sequelize.STRING
-      },
-      mystery: {
-        type: Sequelize.STRING
-      },
-      animation: {
-        type: Sequelize.STRING
-      },
-      documentary: {
-        type: Sequelize.STRING
-      },
-      musical: {
-        type: Sequelize.STRING
-      },
-      crime: {
-        type: Sequelize.STRING
-      },
-      war: {
-        type: Sequelize.STRING
-      },
-      western: {
-        type: Sequelize.STRING
-      },
-      biography: {
-        type: Sequelize.STRING
-      },
-      historical: {
-        type: Sequelize.STRING
-      },
-      family: {
-        type: Sequelize.STRING
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING(32)
       },
       createdAt: {
+        field: 'created_at',
         allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
+        field: 'updated_at',
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Genres');
+    await queryInterface.dropTable('genres');
   }
 };
