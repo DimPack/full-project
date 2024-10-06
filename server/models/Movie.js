@@ -52,3 +52,6 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Movie;
 };
+
+//PFM2024-1_associate_m_to_n_111_2
+//https://www.youtube.com/watch?v=WGdqi9YZUxE&list=PLxQIdU5bMkOiUg3p6X4BXVpIfWzMaLV7l&index=20

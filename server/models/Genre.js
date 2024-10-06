@@ -2,6 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Genre extends Model {
+    
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -16,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING(32),
         allowNull: false,
+        unique: true,
         validate: {
           notNull: true,
           notEmpty: true,
@@ -25,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Genre",
-      tableName: "genre",
+      tableName: "genres",
       underscored: true
     }
   );

@@ -9,8 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      // movieId: {
+      //   field: 'movie_id',
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER
+      // },
       name: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING(32)
       },
       createdAt: {
