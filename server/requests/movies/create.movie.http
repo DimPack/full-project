@@ -1,11 +1,21 @@
 POST http://localhost:3000/movies/ HTTP/1.1
 Content-Type: application/json
 
+  # {
+  #   "title": "The Silence of the Lambs",
+  #   "description": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to catch another serial killer, a madman who skins his victims.",
+  #   "releaseDate": "1991-02-14",
+  #   "durationMovie": 118,
+  #   "country": "USA",
+  #   "language": "eng"
+  # }
+
+
   {
-    "title": "The Silence of the Lambs",
-    "description": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to catch another serial killer, a madman who skins his victims.",
-    "releaseDate": "1991-02-14",
-    "durationMovie": 118,
+    "title": "The Silence of the Lambs 2",
+    "description": "desc.",
+    "releaseDate": "2000-02-14",
+    "durationMovie": 150,
     "country": "USA",
     "language": "eng"
   }

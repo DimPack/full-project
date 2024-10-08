@@ -3,6 +3,7 @@ const userRouter = require("./user.router");
 const taskRouter = require("./task.router");
 const groupRouter = require("./group.router");
 const movieRouter = require("./movie.router");
+const genreRouter = require("./genre.router");
 
 const { checkUser } = require("../middlewares/user.mw");
 
@@ -11,5 +12,7 @@ router.use("/users", userRouter);
 router.use("/users/:userId/tasks", checkUser, taskRouter);
 router.use("/users/:userId/groups", checkUser, groupRouter);
 router.use("/movies", movieRouter);
+router.use("/genres", genreRouter);
+
 
 module.exports = router;

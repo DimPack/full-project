@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      moviesId: {
+      movieId: {
         field: "movie_id",
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -21,7 +21,7 @@ module.exports = {
         onDelete: "cascade",
         onUpdate: "cascade",
       },
-      genresId: {
+      genreId: {
         field: "genre_id",
         allowNull: false,
         type: Sequelize.INTEGER,
