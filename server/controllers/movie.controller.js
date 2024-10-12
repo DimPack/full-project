@@ -1,4 +1,4 @@
-const { Movie } = require("../models");
+const { Movie, Genre } = require("../models");
 
 module.exports.createMovie = async (req, res, next) => {
   try {
@@ -28,46 +28,44 @@ module.exports.findByPk = async (req, res, next) => {
     const {
       params: { movieId },
     } = req;
-    const movie = await Movie.findByPk(movieId);
-    res.status(200).send({ data: movie });
+    const movieInstance = await Movie.findByPk(movieId, {
+      include: ["genres"],
+    });
+    res.status(200).send({ data: movieInstance });
   } catch (error) {
     next(error);
   }
 };
 
 module.exports.deleteMovieByPk = async (req, res, next) => {
- try {
-    const {
-        params: { movieId },
-      } = req;
-      const movieInstance = await Movie.findByPk(movieId);
-      if (!movieInstance) {
-        await next(createError(404, 'Movie not found'));
-      }
-      await movieInstance.destroy();
-    //   const movieDelete = await Movie.destroy({
-    //     where: { id: movieId },
-    //   });
-    //movieDelete - кількість видалених рядків
-      res.status(200).send({ data: movieInstance });
-    } catch (error) {
-      next(error);
-    }
+  try {
+    const { movieInstance } = req;
+    await movieInstance.destroy();
+    res.status(200).send({ data: movieInstance });
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports.updateMovieByPk = async (req, res, next) => {
- try {
-    const {
-        params: { movieId },
-        body,
-      } = req;
-      const movieInstance = await Movie.findByPk(movieId);
-      if (!movieInstance) {
-        return next(createError(404, 'Movie not found'));
-      }
-      await movieInstance.update(body);
-      res.status(200).send({ data: movieInstance });
+  try {
+    const { movieInstance, body } = req;
+    await movieInstance.update(body);
+    res.status(200).send({ data: movieInstance });
   } catch (error) {
-      next(error);
+    next(error);
+  }
+};
+
+module.exports.addMovieToGenre = async (req, res, next) => {
+  try {
+    const { genreInstance, movieInstance } = req;
+    if (!genreInstance || !movieInstance) {
+      return res.status(404).send({ error: "Genre or Movie not found" });
     }
+    await genreInstance.addMovie(movieInstance);
+    res.status(200).send({ data: genreInstance });
+  } catch (error) {
+    next(error);
+  }
 };
