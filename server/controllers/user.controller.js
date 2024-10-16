@@ -1,4 +1,3 @@
-const { Op } = require('sequelize');
 const createError = require('http-errors');
 const _ = require('lodash');
 const { User } = require('../models');

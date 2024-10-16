@@ -43,3 +43,17 @@ export const getAllTasks = (options = {}) => {
     `/users/${options.id}/tasks`
   );
 };
+
+export const getAllMovies = (options = {}) => {
+  const defaultOptions = {
+    page: 1,
+    amount: 3,
+  };
+  const resultOptions = {
+    ...defaultOptions,
+    ...options,
+  };
+  return httpClient.get(`/movies?${queryString.stringify(resultOptions)}`);
+};
+  
+  

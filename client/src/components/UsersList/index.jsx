@@ -8,7 +8,7 @@ const UsersList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers({ page: 1, amount: 5 })); //effect request users
+    dispatch(getUsers({ page: 1, amount: 3 })); //effect request users
     //eslint-disable-next-line
   }, []); //[] - one time
 

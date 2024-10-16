@@ -9,16 +9,24 @@ const {
 } = require("../controllers/movie.controller");
 const { checkMovie } = require("../middlewares/movie.mw");
 const { checkGenre } = require("../middlewares/genre.mw");
+const { paginate } = require("../middlewares/paginate.mw");
 
 const movieRouter = Router();
 
 movieRouter.post("/", createMovie);
-movieRouter.get("/", findAllMovies);
+movieRouter.get("/", paginate, findAllMovies);
 
-movieRouter.get("/:movieId",  findByPk);
-movieRouter.delete("/:movieId", checkMovie, deleteMovieByPk);
+movieRouter
+  .route("/:movieId")
+  .get(findByPk)
+  .delete(checkMovie, deleteMovieByPk)
+  .patch(checkMovie, updateMovieByPk);
 
-movieRouter.patch("/:movieId", checkMovie, updateMovieByPk);
-movieRouter.post("/:movieId/genres/:genreId", checkMovie, checkGenre, addMovieToGenre);
+movieRouter.post(
+  "/:movieId/genres/:genreId",
+  checkMovie,
+  checkGenre,
+  addMovieToGenre
+);
 
 module.exports = movieRouter;
