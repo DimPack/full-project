@@ -12,10 +12,14 @@ module.exports.createMovie = async (req, res, next) => {
 
 module.exports.findAllMovies = async (req, res, next) => {
   const { body } = req;
+  const { pagination } = req;
+
   const allMovies = await Movie.findAll({
     attributes: {
       exclude: ["createdAt", "updatedAt"],
     },
+    ...pagination,
+    include: ["genres"],
   });
   res.status(200).send({ data: allMovies });
   try {

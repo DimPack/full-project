@@ -44,6 +44,16 @@ export const getAllTasks = (options = {}) => {
   );
 };
 
+
+
+
+
+
+
+
+
+
+
 export const getAllMovies = (options = {}) => {
   const defaultOptions = {
     page: 1,

@@ -13,11 +13,12 @@ const MoviesList = () => {
       <p><b>Duration:</b> {movie.durationMovie}</p>
       <p><b>Country: </b>{movie.country}</p>
       <p><b>Language: </b>{movie.language}</p>
+      {/* <p><b>Genres:</b>{movie.genres}</p> */}
       <hr></hr>
     </li>
   );
   useEffect(() => {
-    dispatch(getMovies({ page: 1, amount: 3 }));
+    dispatch(getMovies({ page: 1, amount: 9 }));
     //eslint-disable-next-line
   }, []);
   return (
