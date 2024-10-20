@@ -63,4 +63,18 @@ describe("register test", () => {
     const response = await appRequest.post("/users").send(getUserDataError());
     expect(response.statusCode).toBe(400); // перевіряємо статус код
   });
+
+
+  it("displays all users", async () => {
+    const response = (await appRequest.get("/users"));
+    expect(response.statusCode).toBe(200);
+  });
+  it("displays one user", async () => {
+    const response = (await appRequest.get("/users/1"));
+    expect(response.statusCode).toBe(200);
+  });
+  it("delete one user", async () => {
+    const response = (await appRequest.delete("/users/1"));
+    expect(response.statusCode).toBe(200);
+  });
 });
